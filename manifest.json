@@ -5,6 +5,8 @@
   "permissions": [
     "tabs", "http://mtgo-stats.com/*"
   ],
+  "icons": { "16": "icon.png",
+          "128": "icon128.png" },
   "options_page": "options.html",
   "page_action": {
     "default_title": "Compare against my cards...",
