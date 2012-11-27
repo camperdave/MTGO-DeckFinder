@@ -76,7 +76,7 @@ chrome.extension.sendRequest({message: "GET_CSV"}, function(response) {
 		$("a.liked-card").each(processCardsArchGivenCSV);
 		$("a.unused-card").each(processCardsArchGivenCSV);
 		console.log(total_cost_to_finish);
-		var htmlTotalCostToBuy = '<tr><td class="bold">Cost to Finish:</td><td id="mtgo-deckfinder-total-cost-to-buy">$' + total_cost_to_finish + '</td></tr>'; 
+		var htmlTotalCostToBuy = '<tr><td class="bold">Cost to Finish:</td><td id="mtgo-deckfinder-total-cost-to-buy">$' + (Math.round(total_cost_to_finish * 100) / 100) + '</td></tr>'; 
 		$("td.bold:contains('Format')").parent().parent().append(htmlTotalCostToBuy);
 	}
 	else {
