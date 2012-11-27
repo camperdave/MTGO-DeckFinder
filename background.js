@@ -13,13 +13,15 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 
 // Listen for any changes to the URL of any tab.
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
-
-
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
-		var prefs = JSON.parse(localStorage.prefs)
-		if (request.message == "GET_CSV")
-		  sendResponse({csv: prefs.csv});
+		console.log("requested storage:", localStorage['prefs']);
+		if(localStorage['prefs'] !== undefined) {
+			var prefs = JSON.parse(localStorage['prefs']);
+			if (request.message == "GET_CSV") {
+				sendResponse({csv: prefs.csv});
+			}
+		}
 });
 
 

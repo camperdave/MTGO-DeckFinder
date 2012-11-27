@@ -7,13 +7,16 @@ function handleFileSelect(evt) {
 
 	reader.onload = (function makeReaderFunction(name) {
 		return (function() {
-			var prefs = JSON.parse(localStorage.prefs)
-			prefs.csv = reader.result
-			prefs.csvName = name
-			localStorage.prefs = JSON.stringify(prefs)
-			document.write("File Processed!");
+			var prefs = {};
+			if(localStorage['prefs'] !== undefined) {
+				prefs = JSON.parse(localStorage['prefs']);
+			}
+			prefs.csv = reader.result;
+			prefs.csvName = name;
+			localStorage['prefs'] = JSON.stringify(prefs);
+			document.getElementById('currentFilename').innerHTML = "Successfully processed CSV File: " + prefs.csvName
 		})
-	})(f.name)
+	})(f.name);
 	
 	// Read in the image file as a data URL.
 	reader.readAsText(f);
@@ -24,8 +27,11 @@ function handleFileSelect(evt) {
 // saved preference.
 document.addEventListener('DOMContentLoaded', function () {
 	document.getElementById('csvFile').addEventListener('change', handleFileSelect, false);
-	var prefs = JSON.parse(localStorage.prefs)
-	if(prefs.csvName != null) {
-		document.getElementById('currentFilename').innerHTML = "Current CSV File: " + prefs.csvName
+	if(localStorage['prefs'] !== undefined)
+	{
+		var prefs = JSON.parse(localStorage['prefs']);
+		if(prefs.csvName != null) {
+			document.getElementById('currentFilename').innerHTML = "Current CSV File: " + prefs.csvName
+		}
 	}
 });
