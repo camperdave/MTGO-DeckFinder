@@ -70,7 +70,7 @@ chrome.extension.sendRequest({message: "GET_CSV"}, function(response) {
 		have_cards[card_line["Card Name"]] += parseInt(card_line["Online"])
 	}
 	total_cost_to_finish = 0;
-	if( $("a.popular-card").length > 0){
+	if( $("h2:contains('Archetype Cards')").length > 0){
 		processCardsArchGivenCSV = processCardArchClosure(have_cards)
 		$("a.popular-card").each(processCardsArchGivenCSV);
 		$("a.liked-card").each(processCardsArchGivenCSV);

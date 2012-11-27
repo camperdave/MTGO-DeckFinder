@@ -15,7 +15,6 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
-		console.log("requested storage:", localStorage['prefs']);
 		if(localStorage['prefs'] !== undefined) {
 			var prefs = JSON.parse(localStorage['prefs']);
 			if (request.message == "GET_CSV") {
