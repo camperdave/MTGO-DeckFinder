@@ -20,7 +20,7 @@ function processCardArchClosure(cards) {
 			cost_to_buy = single_price * missing;
 			total_cost_to_finish += cost_to_buy;
 			$(children[0]).text(quantity + " -> " + missing);
-			$(children[3]).text(price + " -> " + missing + "x $" + single_price + " = $" + (Math.round(cost_to_buy * 100) / 100));
+			$(children[3]).text(price + " -> " + missing + "x $" + (Math.round(single_price * 100) / 100) + " = $" + (Math.round(cost_to_buy * 100) / 100));
 		}
 		else {
 			$(parent).css("text-decoration", "line-through");
@@ -51,7 +51,7 @@ function processCardBasicClosure(cards) {
 			total_cost_to_finish += cost_to_buy;
 			$(children[0]).before(quantity + " -> " + missing);
 			$(children[0]).remove();
-			$($(parent).parent().children()[2]).text(price + " -> " + missing + "x $" + single_price + " = $" + (Math.round(cost_to_buy * 100) / 100));
+			$($(parent).parent().children()[2]).text(price + " -> " + missing + "x $" + (Math.round(single_price * 100) / 100) + " = $" + (Math.round(cost_to_buy * 100) / 100));
 		}
 		else {
 			$(parent).parent().css("text-decoration", "line-through");

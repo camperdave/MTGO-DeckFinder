@@ -1,6 +1,6 @@
 {
   "name": "MTGO DeckFinder",
-  "version": "2.2",
+  "version": "2.3",
   "background": { "scripts": ["background.js"] },
   "permissions": [
     "tabs", "http://mtgo-stats.com/*"
