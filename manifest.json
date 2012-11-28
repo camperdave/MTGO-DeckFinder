@@ -1,9 +1,9 @@
 {
   "name": "MTGO DeckFinder",
-  "version": "2.4",
+  "version": "2.5",
   "background": { "scripts": ["background.js"] },
   "permissions": [
-    "tabs", "http://mtgo-stats.com/*"
+    "tabs", "http://mtgo-stats.com/*", "http://www.mtgo-stats.com/*"
   ],
   "icons": { "16": "icon.png",
           "128": "icon128.png" },

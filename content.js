@@ -11,6 +11,7 @@ function processCardArchClosure(cards) {
 		num_quantity = parseInt(quantity);
 		if(cards[name] != null) {
 			var missing = num_quantity - cards[name];
+			cards[name] -= (num_quantity - missing);
 		}
 		else {
 			var missing = num_quantity;
@@ -41,6 +42,7 @@ function processCardBasicClosure(cards) {
 		num_quantity = parseInt(quantity)
 		if(cards[name] != null) {
 			var missing = num_quantity - cards[name];
+			cards[name] -= (num_quantity - missing);
 		}
 		else {
 			var missing = num_quantity;
