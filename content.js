@@ -62,14 +62,17 @@ function processCardBasicClosure(cards) {
 }
 
 chrome.extension.sendRequest({message: "GET_CSV"}, function(response) {
-	csv_cards = $.csv2Dictionary(response.csv)
-	have_cards = {}
+	var csv_cards = $.csv2Dictionary(response.csv)
+	var have_cards = {}
 	for(i = 0; i < csv_cards.length; i++) {
-		card_line = csv_cards[i]
+		var card_line = csv_cards[i]
 		if (have_cards[card_line["Card Name"]] == null) {
 			have_cards[card_line["Card Name"]] = 0
 		}
 		have_cards[card_line["Card Name"]] += parseInt(card_line["Online"])
+		if (response.dpaCheck && card_line['Set'] == 'DPA') {
+			have_cards[card_line["Card Name"]] = 0
+		}
 	}
 	total_cost_to_finish = 0;
 	if( $("h2:contains('Archetype Cards')").length > 0){

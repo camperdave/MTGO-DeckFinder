@@ -18,7 +18,11 @@ chrome.extension.onRequest.addListener(
 		if(localStorage['prefs'] !== undefined) {
 			var prefs = JSON.parse(localStorage['prefs']);
 			if (request.message == "GET_CSV") {
-				sendResponse({csv: prefs.csv});
+				var resp = {
+					csv: prefs.csv,
+					dpaCheck: prefs.dpaCheck
+				};
+				sendResponse(resp);
 			}
 		}
 });
