@@ -2,17 +2,21 @@
 // This script injects the dependencies and content script when the user clicks the browser icon
 
 
-// Called when the url of a tab changes.
-function checkForValidUrl(tabId, changeInfo, tab) {
-  // If the string "http://mtgo-stats.com/" starts the url..
-  if ((tab.url.indexOf('http://mtgo-stats.com/') || (tab.url.indexOf('http://www.mtgo-stats.com/') == 0)) == 0) {
-    // ... show the page action.
-    chrome.pageAction.show(tabId);
-  }
-};
+chrome.runtime.onInstalled.addListener(function() {
+	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+		chrome.declarativeContent.onPageChanged.addRules([
+			{
+				conditions: [
+					new chrome.declarativeContent.PageStateMatcher({
+						pageUrl: { urlContains: 'mtgo-stats' },
+					})
+				],
+				actions: [ new chrome.declarativeContent.ShowPageAction() ]
+			}
+		]);
+	});
+});
 
-// Listen for any changes to the URL of any tab.
-chrome.tabs.onUpdated.addListener(checkForValidUrl);
 chrome.extension.onRequest.addListener(
 	function(request, sender, sendResponse) {
 		if(localStorage['prefs'] !== undefined) {
