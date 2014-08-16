@@ -87,7 +87,13 @@ chrome.extension.sendRequest({message: "GET_CSV"}, function(response) {
 		processCardsBasicGivenCSV = processCardBasicClosure(have_cards);
 		$("td.nowrap > a").each(processCardsBasicGivenCSV);
 		var htmlTotalCostToBuy = '<tr><td align="center" class="bold" colspan="2" id="mtgo-deckfinder-total-cost-to-buy">Cost to Finish: $' + (Math.round(total_cost_to_finish * 100) / 100) + '</td></tr>'; 
-		$("td.bold:contains('Main Deck')").parent().parent().append(htmlTotalCostToBuy);
+		var mainDeckSel = $("td.bold:contains('Main Deck')");
+		if(mainDeckSel.length) {
+			mainDeckSel.parent().parent().append(htmlTotalCostToBuy);
+		}
+		else {
+			$("a:contains('[Download .dec]')").parent().append(htmlTotalCostToBuy);
+		}
 	}
 
 });
