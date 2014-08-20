@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(function() {
 			{
 				conditions: [
 					new chrome.declarativeContent.PageStateMatcher({
-						pageUrl: { urlContains: 'mtgo-stats' },
+						pageUrl: { hostContains: '.mtgo-stats' },
 					})
 				],
 				actions: [ new chrome.declarativeContent.ShowPageAction() ]
